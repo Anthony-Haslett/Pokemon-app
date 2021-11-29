@@ -6,17 +6,19 @@ import io.ktor.client.*
 import io.ktor.client.features.*
 import io.ktor.client.request.*
 import io.ktor.http.*
-import kotlin.text.get
 
 class PostServiceImpl(
     private val client: HttpClient
-): PostsService  {
+) : PostsService {
     
     override suspend fun getPosts(): List<PostResponse> {
         // Add in parameters
         // parameter()
         return try {
-            client.get{ url(HttpRoutes.POSTS) }
+            client.get {
+                url(HttpRoutes.POSTS)
+                println("getting pokemon" + client.attributes.toString())
+            }
         } catch (e: RedirectResponseException) {
             // 3xx - responses
             println("Error: ${e.response.status.description}")
@@ -38,7 +40,7 @@ class PostServiceImpl(
     
     override suspend fun createPost(postRequest: PostRequest): PostResponse? {
         return try {
-            client.post<PostResponse>{
+            client.post<PostResponse> {
                 url(HttpRoutes.POSTS)
                 contentType(ContentType.Application.Json)
                 body = postRequest

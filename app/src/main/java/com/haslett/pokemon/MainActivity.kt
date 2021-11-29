@@ -73,9 +73,9 @@ class MainActivity : ComponentActivity() {
                                         .fillMaxWidth()
                                         .padding(16.dp)
                                 ) {
-                                    Text(text = it.title, fontSize = 20.sp)
+                                    Text(text = it.name, fontSize = 20.sp)
                                     Spacer(modifier = Modifier.height(4.dp))
-                                    Text(text = it.body, fontSize = 14.sp)
+                                    Text(text = it.description, fontSize = 14.sp)
                                     
 //                                    Text(text = "pokemon name")
 //                                    GlideImage(
